@@ -24,6 +24,8 @@ export class Router {
       this.#router.any(path, handler);
     } else {
       this.#router.on(method, path, handler);
+      // To avoid having to define an OPTIONS route manually for every GET, POST, DELETE, etc. request, we add it here
+      this.#router.on("OPTIONS", path, ctx => ctx.sendText("ok"));
     }
   }
 
