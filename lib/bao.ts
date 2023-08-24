@@ -1,4 +1,4 @@
-import type { Errorlike, Serve, Server, ServerWebSocket } from "bun";
+import type { Errorlike, Serve, Server, ServerWebSocket, TLSOptions } from "bun";
 import { Context, WebSocketContext } from "./context";
 import { MiddlewarePosition } from "./middleware";
 import { Router, TMethods } from "./router";
@@ -165,6 +165,7 @@ export class Bao {
       port: listen.port || 3000,
       development: listen.development || false,
       hostname: listen.hostname || "0.0.0.0",
+      tls: listen.tls,
     };
   }
 }
@@ -173,6 +174,7 @@ interface IListen {
   port?: number;
   hostname?: string;
   development?: boolean;
+  tls?: TLSOptions;
 }
 
 export interface IHandler {
